@@ -8,7 +8,7 @@ const CatalagoDepartamentoModel = db.define('catalogo_departamento',{
         field: 'idDepartamento'
     },
     nombreDepartamento: {type: DataTypes.STRING},
-    direccionDepartamento: {type: DataTypes.INTEGER}
+    direccion_id: {type: DataTypes.INTEGER}
 }, {
     tableName: 'catalogo_departamento',
     timestamps: false // Desactivar las columnas createdAt y updatedAt

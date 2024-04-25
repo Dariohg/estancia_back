@@ -2,7 +2,7 @@ import db from "../database/db.js";
 import {DataTypes} from "sequelize";
 
 const DependenciaModel = db.define('catalogoDependencia_enlace',{
-    idDireccion: {
+    idDependencia: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         field: 'idDependencia'

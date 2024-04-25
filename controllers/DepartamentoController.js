@@ -10,13 +10,13 @@ export const getAllDepartamento = async (req, res) => {
     }
 };
 
-export const getAllDepartamentoById = async (req, res) => {
-    const { direccionDepartamento } = req.query;
+export const getAllDepartamentoByDireccionId = async (req, res) => {
+    const { direccion_id } = req.query;
 
     try {
         const departamento = await catalagoDepartamentoModel.findAll({
             where: {
-                direccionDepartamento: direccionDepartamento
+                direccion_id: direccion_id
             }
         });
         res.json(departamento);
