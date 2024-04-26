@@ -20,6 +20,7 @@ const EnlaceModel = db.define('enlace',{
     idDireccion: {type: DataTypes.INTEGER},
     idDepartamento: {type: DataTypes.INTEGER},
     idCargo: {type: DataTypes.INTEGER},
+    estatus_id : {type: DataTypes.INTEGER},
 }, {
     tableName: 'enlace',
     timestamps: false // Desactivar las columnas createdAt y updatedAt

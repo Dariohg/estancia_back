@@ -28,7 +28,7 @@ import catalagoDireccionModel from "../models/CatalagoDireccionModel.js";
                     },
                     {
                         model: CatalagoDepartamentoModel,
-                        as: 'departamento', // Utiliza el alias correcto
+                        as: 'departamento',
                         attributes: ['nombreDepartamento']
                     },
                     {
@@ -44,18 +44,67 @@ import catalagoDireccionModel from "../models/CatalagoDireccionModel.js";
         }
     };
 
+export const getAllEnlacesByEstatusId = async (req, res) => {
+    const { estatus_id } = req.query; // Obtener el estatus_id de los parámetros de la URL
+    try {
+        const enlaces = await EnlaceModel.findAll({
+            where: {
+                estatus_id
+            },
+            include: [
+                {
+                    model: CargoEnlaceModel,
+                    as: 'cargoEnlace',
+                    attributes: ['nombreCargo']
+                },
+                {
+                    model: CatalagoDepartamentoModel,
+                    as: 'departamento',
+                    attributes: ['nombreDepartamento']
+                },
+                {
+                    model: catalagoDireccionModel,
+                    as: 'direccion',
+                    attributes: ['nombreDireccion']
+                }
+            ]
+        });
+        res.json(enlaces);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 
 // Mostrar un enlace
-    export const getEnlace = async (req, res) => {
-        try {
-            const enlace = await EnlaceModel.findOne({
-                where: {idEnlace: req.params.id}
-            });
-            res.json(enlace[0]);
-        } catch (error) {
-            res.status(500).json({message: error.message});
-        }
-    };
+export const getEnlace = async (req, res) => {
+    try {
+        const enlace = await EnlaceModel.findOne({
+            where: { idEnlace: req.params.id },
+            include: [
+                {
+                    model: CargoEnlaceModel,
+                    as: 'cargoEnlace',
+                    attributes: ['nombreCargo']
+                },
+                {
+                    model: CatalagoDepartamentoModel,
+                    as: 'departamento',
+                    attributes: ['nombreDepartamento']
+                },
+                {
+                    model: catalagoDireccionModel,
+                    as: 'direccion',
+                    attributes: ['nombreDireccion']
+                }
+            ]
+        });
+        res.json(enlace);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 
 
 //Crear un enlace
@@ -83,6 +132,22 @@ import catalagoDireccionModel from "../models/CatalagoDireccionModel.js";
             res.json({message: error.message})
         }
     }
+
+export const updateEnlaceEliminado = async (req, res) => {
+    try {
+        const { estatus_id } = req.body;
+        await EnlaceModel.update({ estatus_id: 3 }, {
+            where: { idEnlace: req.params.id }
+        });
+        res.json({
+            "message": "Enlace actualizado correctamente"
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
 
 //Eliminar un enlace
     export const deleteEnlace = async (req, res) => {
