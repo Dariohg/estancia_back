@@ -1,4 +1,3 @@
-import CatalagoDepartamentoModel from "../models/CatalagoDepartamentoModel.js";
 import DependenciaModel from "../models/DependenciaModel.js";
 
 export const getAllDependencia = async (req, res) => {

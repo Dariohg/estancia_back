@@ -8,6 +8,8 @@ import cargoRouter from "./routes/cargoRouter.js";
 import direccionRouter from "./routes/direccionRouter.js";
 import dependenciaRouter from "./routes/dependenciaRouter.js";
 import departamentoRouter from "./routes/departamentoRouter.js";
+import versionContratoRouter from "./routes/versionContratoRouter.js";
+import tipoContratoRouter from "./routes/tipoContratoRouter.js";
 
 const app = express()
 
@@ -19,7 +21,8 @@ app.use('/cargo',cargoRouter)
 app.use('/direccion',direccionRouter)
 app.use('/dependencia',dependenciaRouter)
 app.use('/departamento',departamentoRouter)
-
+app.use('/versionContrato',versionContratoRouter)
+app.use('/tipoContrato',tipoContratoRouter)
 
 try {
     await db.authenticate()

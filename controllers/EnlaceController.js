@@ -45,7 +45,7 @@ import catalagoDireccionModel from "../models/CatalagoDireccionModel.js";
     };
 
 export const getAllEnlacesByEstatusId = async (req, res) => {
-    const { estatus_id } = req.query; // Obtener el estatus_id de los parámetros de la URL
+    const { estatus_id } = req.query;
     try {
         const enlaces = await EnlaceModel.findAll({
             where: {
